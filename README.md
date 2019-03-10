@@ -1,2 +1,2 @@
-# heorku-pickle-flask
-Heroku Pickle Flask
+# heroku-flask-base-template
+Heroku Flask Base Template
