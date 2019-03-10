@@ -9,26 +9,36 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    
+    city_list = t_util.read_cities()
 
-@app.route('/result', methods=['POST'])
+    result = {
+        'apiresult' : 0,    
+        'apimessage' : 'OK',    
+        
+        'details' : city_list        
+    }
+    
+    return render_template('index.html', result = result)
+
+@app.route('/', methods=['POST'])
 def result():
     
-    name  = request.form.get('name')
+    city  = request.form.get('city')   
+    country  = request.form.get('country')   
 
-    name = name.lower()
+    t_util.add_city(city, country)
     
-    name_details = t_util.get_name_details(name)
+    city_list = t_util.read_cities()
 
     result = {
         'apiresult' : 0,    
         'apimessage' : 'OK',    
 
-        'name' : name,
-        'details' : name_details        
+        'details' : city_list        
     }
     
-    return render_template('index.html', result=result)
+    return render_template('index.html', result = result)
 
 if __name__ == "__main__":
     app.run()

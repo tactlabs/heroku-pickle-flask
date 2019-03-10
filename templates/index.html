@@ -14,23 +14,25 @@
     <div class="message_holder"></div>
 
     <section class="form-style-10">
-      <form action="result" method="POST">
+      <form action="" method="POST">
     	
       <div class="section"><span>*</span>Base</div>
       
         <div class="inner-wrap">
-            <label>Name <input type="text" name="name" /></label>
+            <label>City <input type="text" name="city" /></label>
         </div>                
-       
-      <input type="submit" value="Let's Find"/>
+
+        <div class="inner-wrap">
+          <label>Country <input type="text" name="country" /></label>
+        </div>                
+
+        <input type="submit" value="Let's Find"/>
       	
       </form>    
     </section>
 
 
-    {% if result %}  
-
-    
+    {% if result %}     
 
     <section class="form-style-10" style="width:1060px;">
 
@@ -47,10 +49,12 @@
                 <th>Name</th>
                 <th>Details</th>
               </tr>
+              {% for city in result.details %}  
               <tr>
-                <td>{{result.name}}</td>
-                <td>{{result.details}}</td>              
+                <td>{{city.name}}</td>                  
+                <td>{{city.country}}</td>  
               </tr>
+              {% endfor %}
             </table>
           </div>
         {% else %}
